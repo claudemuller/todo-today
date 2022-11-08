@@ -1,10 +1,11 @@
 const express = require('express');
 const app = express();
-const bodyParser = require('body-parser')
+const ejs = require('ejs');
+const bodyParser = require('body-parser');
 const uuid = require('uuid/v4');
 
-const jsonParser = bodyParser.json()
-const urlencodedParser = bodyParser.urlencoded({ extended: false })
+const jsonParser = bodyParser.json();
+const urlencodedParser = bodyParser.urlencoded({ extended: false });
 
 app.use(express.static(__dirname + '/static'));
 
@@ -12,6 +13,18 @@ app.get('/items', urlencodedParser, getItems);
 app.post('/items', jsonParser, addItem);
 app.put('/items/:id', jsonParser, updateItem);
 app.delete('/items/:id', urlencodedParser, deleteItem);
+
+app.get('/', function(req, res) {
+    const done = todos.filter(t => t.done);
+    const undone = todos.filter(t => !t.done);
+    ejs.renderFile('src/templates/index.ejs', { done, undone }, {}, function(err, template) {
+        if (err) {
+            throw err;
+        } else {
+            res.end(template);
+        }
+    });
+});
 
 app.listen(3000, () => console.log('Listening on port 3000'));
 

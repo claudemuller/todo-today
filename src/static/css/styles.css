@@ -1,9 +1,14 @@
 body {
-    background-color: #f4f4f4;
-    margin-top: 50px;
-    font-family: 'Lato';
+	background-color: #f4f4f4;
+	margin-top: 50px;
+	font-family: 'Lato';
 }
 
 .list-group li {
-    padding-left: 40px;
+	position: relative;
+	padding-left: 40px;
+}
+
+.list-group li .close {
+	float: right;
 }

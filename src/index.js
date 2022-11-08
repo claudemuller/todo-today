@@ -7,6 +7,8 @@ const uuid = require('uuid/v4');
 const jsonParser = bodyParser.json();
 const urlencodedParser = bodyParser.urlencoded({ extended: false });
 
+const port = process.env['NODE_ENV'] === 'prod' ? 8080 : 3000;
+
 app.use(express.static(__dirname + '/static'));
 
 app.get('/items', urlencodedParser, getItems);
@@ -26,7 +28,7 @@ app.get('/', function(req, res) {
     });
 });
 
-app.listen(3000, () => console.log('Listening on port 3000'));
+app.listen(port, () => console.log(`Listening on port ${port}`));
 
 const gracefulShutdown = () => {
     process.exit();

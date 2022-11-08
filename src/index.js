@@ -14,7 +14,7 @@ app.use(express.static(__dirname + '/static'));
 app.get('/items', urlencodedParser, getItems);
 app.post('/items', jsonParser, addItem);
 app.put('/items/:id', jsonParser, updateItem);
-app.delete('/items/:id', urlencodedParser, deleteItem);
+app.delete('/items/:id', jsonParser, deleteItem);
 
 app.get('/', function(req, res) {
     const done = todos.filter(t => t.done);

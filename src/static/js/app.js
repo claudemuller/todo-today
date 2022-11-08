@@ -58,6 +58,20 @@
             .catch(console.error);
     }
 
+    function deleteTodo(todoId) {
+        console.log(todoId);
+        fetch(`/items/${todoId}`, {
+            method: 'DELETE',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+            },
+        })
+            .then(res => res.json())
+            .then(updateTodos)
+            .catch(console.error);
+    }
+
     const addTodoBtn = document.getElementById('add-todo-btn');
     addTodoBtn.addEventListener('click', e => {
         const todoInput = document.getElementById('todo-input');
@@ -105,6 +119,7 @@
 
         const closeBtn = document.createElement('button');
         closeBtn.setAttribute('class', 'close');
+        closeBtn.addEventListener('click', e => deleteTodo(e.target.parentNode.parentNode.id));
         const closeBtnInner = document.createElement('span');
         closeBtnInner.innerHTML = '&times;';
         closeBtn.appendChild(closeBtnInner);

@@ -28,6 +28,18 @@ app.get('/', function(req, res) {
     });
 });
 
+app.get('/pure', function(req, res) {
+    const done = todos.filter(t => t.done);
+    const undone = todos.filter(t => !t.done);
+    ejs.renderFile('src/templates/view.ejs', { done, undone }, {}, function(err, template) {
+        if (err) {
+            throw err;
+        } else {
+            res.end(template);
+        }
+    });
+});
+
 app.listen(port, () => console.log(`Listening on port ${port}`));
 
 const gracefulShutdown = () => {

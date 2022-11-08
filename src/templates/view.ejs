@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no, maximum-scale=1.0, user-scalable=0" />
+    <link rel="stylesheet" href="css/bootstrap.min.css" crossorigin="anonymous" />
+    <link rel="stylesheet" href="css/styles.css" />
+    <style>
+			#root {
+				max-width: 95%;
+			}
+
+			#todo-list .list-group-item {
+				border: 1px #666 solid;
+			}
+    </style>
+    <title>Todo Today</title>
+</head>
+<body>
+<div class="container" id="root">
+    <h1>Todo Today</h1>
+
+    <hr>
+
+    <ul class="list-group" id="todo-list">
+        <% for (let i = 0; i < undone.length; i++) { %>
+            <li class="list-group-item" id="<%= undone[i].id; %>">
+                <%= undone[i].todo %>
+            </li>
+        <% } %>
+    </ul>
+
+    <hr>
+
+    <h2>Done</h2>
+
+    <ul class="list-group" id="done-list">
+        <% for (let i = 0; i < done.length; i++) { %>
+            <li class="list-group-item" id="<%= done[i].id; %>">
+                <%= done[i].todo %>
+            </li>
+        <% } %>
+    </ul>
+</div>
+</body>
+</html>

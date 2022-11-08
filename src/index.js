@@ -28,8 +28,9 @@ app.get('/', function(req, res) {
     });
 });
 
-app.get('/pure', function(req, res) {
+app.get('/view', function(req, res) {
     const done = todos.filter(t => t.done);
+    //done.sort((a, b) => a.tag < b.tag ? -1 : 1);
     const undone = todos.filter(t => !t.done);
     ejs.renderFile('src/templates/view.ejs', { done, undone }, {}, function(err, template) {
         if (err) {
@@ -62,6 +63,7 @@ function addItem(req, res) {
     const item = {
         id: uuid(),
         todo: req.body.todo,
+        tag: req.body.tag,
         done: false,
     };
 
@@ -83,6 +85,7 @@ function updateItem(req, res) {
         item = todos[i];
         if (item.id === req.params.id) {
             item.done = req.body.done;
+            item.tag = req.body.tag;
         }
     }
 

@@ -10,8 +10,19 @@
 				max-width: 95%;
 			}
 
-			#todo-list .list-group-item {
+			.list-group-item {
+				font-weight: bold;
 				border: 1px #666 solid;
+				background-color: #ddd;
+			}
+
+			.work {
+				background-color: white;
+			}
+
+			.list-group li {
+				position: relative;
+				padding-left: 20px;
 			}
     </style>
     <title>Todo Today</title>
@@ -24,7 +35,7 @@
 
     <ul class="list-group" id="todo-list">
         <% for (let i = 0; i < undone.length; i++) { %>
-            <li class="list-group-item" id="<%= undone[i].id; %>">
+            <li class="list-group-item <%= undone[i].tag === 'work' ? 'work' : ''; %>" id="<%= undone[i].id; %>">
                 <%= undone[i].todo %>
             </li>
         <% } %>
@@ -36,7 +47,7 @@
 
     <ul class="list-group" id="done-list">
         <% for (let i = 0; i < done.length; i++) { %>
-            <li class="list-group-item" id="<%= done[i].id; %>">
+            <li class="list-group-item <%= undone[i].tag === 'work' ? 'work' : ''; %>" id="<%= done[i].id; %>">
                 <%= done[i].todo %>
             </li>
         <% } %>

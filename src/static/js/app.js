@@ -62,10 +62,13 @@
     addTodoBtn.addEventListener('click', e => {
         const todoInput = document.getElementById('todo-input');
         const todo = todoInput.value;
+        const todoTag = document.getElementById('todo-tag');
+        const workTag = todoTag.checked;
 
         if (todo !== '') {
             const payload = {
                 todo,
+                tag: workTag ? 'work' : '',
                 done: false,
             };
 
@@ -81,6 +84,7 @@
                 .then(todos => {
                     updateTodos(todos);
                     todoInput.value = '';
+                    todoTag.checked = false;
                 })
                 .catch(console.error);
         }
@@ -108,6 +112,12 @@
         todoEl.appendChild(todoCheck);
         todoEl.appendChild(todoTxt);
         todoEl.appendChild(closeBtn);
+        if (todo.tag) {
+            const tagCheck = document.createElement('span');
+            tagCheck.setAttribute('class', 'tag badge badge-primary');
+            tagCheck.innerHTML = todo.tag;
+            todoEl.appendChild(tagCheck);
+        }
 
         if (todo.done) {
             doneList.appendChild(todoEl);

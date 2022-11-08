@@ -12,3 +12,14 @@ body {
 .list-group li .close {
 	float: right;
 }
+
+.new-todo {
+	position: relative;
+}
+
+.tag {
+	position: absolute;
+	top: 12px;
+	right: 65px;
+	z-index: 999;
+}
